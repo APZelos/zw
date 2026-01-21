@@ -1,0 +1,30 @@
+package cli
+
+import (
+	"fmt"
+
+	"github.com/spf13/cobra"
+)
+
+var (
+	// Version is set at build time via ldflags
+	Version = "dev"
+	// Commit is set at build time via ldflags
+	Commit = "none"
+	// Date is set at build time via ldflags
+	Date = "unknown"
+)
+
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print version information",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Fprintf(cmd.OutOrStdout(), "zw %s\n", Version)
+		fmt.Fprintf(cmd.OutOrStdout(), "  commit: %s\n", Commit)
+		fmt.Fprintf(cmd.OutOrStdout(), "  built:  %s\n", Date)
+	},
+}
+
+func init() {
+	rootCmd.AddCommand(versionCmd)
+}
