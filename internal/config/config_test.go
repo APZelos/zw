@@ -17,13 +17,9 @@ func TestDefaultConfig(t *testing.T) {
 }
 
 func TestLoad_NoConfigFile(t *testing.T) {
-	// Save and restore HOME
-	originalHome := os.Getenv("HOME")
-	defer os.Setenv("HOME", originalHome)
-
 	// Use a temp directory as HOME
 	tmpDir := t.TempDir()
-	os.Setenv("HOME", tmpDir)
+	t.Setenv("HOME", tmpDir)
 
 	cfg, err := Load()
 
@@ -33,13 +29,9 @@ func TestLoad_NoConfigFile(t *testing.T) {
 }
 
 func TestLoad_ValidConfigFile(t *testing.T) {
-	// Save and restore HOME
-	originalHome := os.Getenv("HOME")
-	defer os.Setenv("HOME", originalHome)
-
 	// Use a temp directory as HOME
 	tmpDir := t.TempDir()
-	os.Setenv("HOME", tmpDir)
+	t.Setenv("HOME", tmpDir)
 
 	// Create config directory and file
 	configDir := filepath.Join(tmpDir, ".config", "zw")
@@ -58,13 +50,9 @@ func TestLoad_ValidConfigFile(t *testing.T) {
 }
 
 func TestLoad_InvalidTOML(t *testing.T) {
-	// Save and restore HOME
-	originalHome := os.Getenv("HOME")
-	defer os.Setenv("HOME", originalHome)
-
 	// Use a temp directory as HOME
 	tmpDir := t.TempDir()
-	os.Setenv("HOME", tmpDir)
+	t.Setenv("HOME", tmpDir)
 
 	// Create config directory and file with invalid TOML
 	configDir := filepath.Join(tmpDir, ".config", "zw")
@@ -80,13 +68,9 @@ func TestLoad_InvalidTOML(t *testing.T) {
 }
 
 func TestLoad_EmptyConfigFile(t *testing.T) {
-	// Save and restore HOME
-	originalHome := os.Getenv("HOME")
-	defer os.Setenv("HOME", originalHome)
-
 	// Use a temp directory as HOME
 	tmpDir := t.TempDir()
-	os.Setenv("HOME", tmpDir)
+	t.Setenv("HOME", tmpDir)
 
 	// Create config directory and empty file
 	configDir := filepath.Join(tmpDir, ".config", "zw")
@@ -103,13 +87,9 @@ func TestLoad_EmptyConfigFile(t *testing.T) {
 }
 
 func TestConfig_PartialOverride(t *testing.T) {
-	// Save and restore HOME
-	originalHome := os.Getenv("HOME")
-	defer os.Setenv("HOME", originalHome)
-
 	// Use a temp directory as HOME
 	tmpDir := t.TempDir()
-	os.Setenv("HOME", tmpDir)
+	t.Setenv("HOME", tmpDir)
 
 	// Create config with only some fields
 	configDir := filepath.Join(tmpDir, ".config", "zw")

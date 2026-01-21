@@ -48,6 +48,6 @@ func runQuery(cmd *cobra.Command, pattern string) error {
 	// TODO: Implement worktree lookup and fuzzy matching
 	// For now, just print a placeholder message to stderr
 	// and nothing to stdout (so the shell wrapper won't cd)
-	fmt.Fprintln(cmd.ErrOrStderr(), "zw: worktree lookup not yet implemented")
+	_, _ = fmt.Fprintln(cmd.ErrOrStderr(), "zw: worktree lookup not yet implemented")
 	return nil
 }
